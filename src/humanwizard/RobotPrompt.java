@@ -1,0 +1,48 @@
+package humanwizard;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+public abstract class RobotPrompt {
+	
+	protected String screenId;
+	
+	public RobotPrompt(String screenId){
+		this.screenId = screenId;
+	}
+	
+	public String getScreenId(){
+		return this.screenId;
+	}
+	
+	public abstract void enterWithAnswers(Map<String, List<String>> userAnswerDB);
+	public abstract String generatePrompt();
+	public abstract List<UserResponseOption> generatePossibleUserResponses();
+	public abstract String nextScreen(Map<String, List<String>> userAnswerDB);
+
+	public List<String> getDynamicComments(){
+		List<String> comments = new ArrayList<>();
+		//comments.add("Some comment");
+		return comments;
+	}
+
+
+	protected LinkedList<String> toLinkedList(String...args){
+		LinkedList <String> items = new LinkedList<>();
+		for(String a : args){
+			items.add(a);
+		}
+		return items;
+	}
+
+	protected LinkedList<UserResponseOption> usersResponsesToList(String screenId, String responseKey, String...options){
+		LinkedList<UserResponseOption> loptions = new LinkedList<>();
+		for(String o : options){
+			loptions.add(new UserResponseOption(screenId, responseKey, o));
+		}
+		return loptions;
+	}
+	
+}
