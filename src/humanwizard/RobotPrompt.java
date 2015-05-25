@@ -1,9 +1,6 @@
 package humanwizard;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class RobotPrompt {
 	
@@ -21,6 +18,10 @@ public abstract class RobotPrompt {
 	public abstract String generatePrompt();
 	public abstract List<UserResponseOption> generatePossibleUserResponses();
 	public abstract String nextScreen(Map<String, List<String>> userAnswerDB);
+
+	public Set<String> getRequiredQuestions(){
+		return new HashSet<>(0);
+	}
 
 	public List<String> getDynamicComments(){
 		List<String> comments = new ArrayList<>();

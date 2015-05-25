@@ -21,17 +21,20 @@ public class DSummary extends RobotPrompt{
 
 	@Override
 	public void enterWithAnswers(Map<String, List<String>> userAnswerDB) {
-		int imp = Integer.parseInt(userAnswerDB.get(DrinkPromptNames.IMPORTANCEC).get(0));
+		int imp = Integer.parseInt(userAnswerDB.get(DrinkPromptNames.IMPORTANCE).get(0));
 		int confidence = Integer.parseInt(userAnswerDB.get(DrinkPromptNames.CONFIDENCE).get(0));
 
-		if(imp < 4){
-			this.importanceString = "not that important";
+		if(imp == 0){
+			this.importanceString = "not important";
+		}
+		else if(imp < 4){
+			this.importanceString = "somewhat important";
 		}
 		else if(imp < 7){
-			this.importanceString = "moderately important";
+			this.importanceString = "pretty important";
 		}
 		else{
-			this.importanceString = "pretty important";
+			this.importanceString = "quite important";
 		}
 
 		if(confidence < 4){

@@ -238,7 +238,7 @@ public class WizardGUI extends JFrame {
 	}
 	
 	
-	protected void nextScreen(){
+	public void nextScreen(){
 
 
 		for(UserResponseOption o : this.dynamicOptions){
@@ -293,8 +293,11 @@ public class WizardGUI extends JFrame {
 	}
 
 	public void say(String speechText){
-		if(this.keepon != null){
-			this.keepon.say(speechText);
+		if(!speechText.startsWith("###")) {
+			System.out.println("Speech event...");
+			if(this.keepon != null) {
+				this.keepon.say(speechText);
+			}
 		}
 	}
 	

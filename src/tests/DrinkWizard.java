@@ -2,6 +2,7 @@ package tests;
 
 import humanwizard.Wizard;
 import humanwizard.WizardGUI;
+import keepon.KeepOnNetworkClient;
 import tests.drinkinprompts.*;
 
 /**
@@ -13,6 +14,7 @@ public class DrinkWizard {
 
 		Wizard wizard = new Wizard();
 		wizard.addRobotPrompt(new DRootRP());
+		wizard.addRobotPrompt(new DWelcome());
 		wizard.addRobotPrompt(new DPattern());
 		wizard.addRobotPrompt(new DGood());
 		wizard.addRobotPrompt(new DBad());
@@ -27,12 +29,16 @@ public class DrinkWizard {
 		wizard.addRobotPrompt(new DGoals());
 		wizard.addRobotPrompt(new DGoalYes());
 		wizard.addRobotPrompt(new DGoalConfirm());
+		wizard.addRobotPrompt(new DGoalCNo());
+		wizard.addRobotPrompt(new DGoalYesRepeat());
 		wizard.addRobotPrompt(new DGoalSteps());
 		wizard.addRobotPrompt(new DInformation());
 		wizard.addRobotPrompt(new DInformationResponse());
 
 
 		WizardGUI gui = new WizardGUI(wizard);
+		gui.nextScreen();
+
 
 		/*
 		KeepOnNetworkClient keepon = new KeepOnNetworkClient(12345);

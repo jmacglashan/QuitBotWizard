@@ -34,7 +34,12 @@ public class DImportanceB extends RobotPrompt{
 	}
 
 	@Override
+	public List<String> getDynamicComments() {
+		return this.toLinkedList("Okay", "So there are some reasons for you to make a change", "That is important to you");
+	}
+
+	@Override
 	public String nextScreen(Map<String, List<String>> userAnswerDB) {
-		return DrinkPromptNames.IMPORTANCEC;
+		return DrinkPromptNames.CONFIDENCE;
 	}
 }

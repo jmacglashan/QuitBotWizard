@@ -30,7 +30,8 @@ public class DPattern extends RobotPrompt{
 	public String generatePrompt() {
 		return "I first want to learn a bit more about your current patterns of drinking.\n" +
 				"From the information you gave us, I understand that you drink about " + this.daysPerWeek + " days per " +
-				"week and about " + this.drinksPerWeek + " drinks per week.\n";
+				"week and about " + this.drinksPerWeek + " drinks per week.\n" +
+				"When do you usually drink alcohol?\n";
 	}
 
 	@Override
@@ -46,7 +47,6 @@ public class DPattern extends RobotPrompt{
 	@Override
 	public List<String> getDynamicComments(){
 		List<String> comments = new LinkedList<>();
-		comments.add("When do you usually drink alcohol?");
 		comments.add("Okay");
 		comments.add("When do you tend to drink the most?");
 		comments.add("I see.");

@@ -51,10 +51,21 @@ public class DConfirm extends RobotPrompt{
 		String good = this.itemsToString(this.good);
 		String bad = this.itemsToString(this.bad);
 
-		String resposne = "I heard you say that you like that it " + good + "; but not that it " + bad +
-				". Is that right?\n";
+		/*String resposne = "So we've been talking a little about the good things about your drinking, as well as some of the not-so-good things." +
+				"I heard you say that you like that it " + good + "; but not that it " + bad +
+				". Is that right?\n";*/
+
+		String resposne = "So we've been talking a little about the good things about your drinking, as well as some of the not-so-good things. " +
+				"Let me see if I have understood you. Some of the things you like about drinking alcohol are " + good + ". " +
+				"On the other hand, you don't like that drinking " + bad +
+				". Is that right? Did I miss anything important?\n";
 
 		return resposne;
+	}
+
+	@Override
+	public List<String> getDynamicComments() {
+		return this.toLinkedList("Did I miss anything important?", "Okay", "Can you tell me more about that?", "Anything else?");
 	}
 
 	@Override
@@ -65,6 +76,9 @@ public class DConfirm extends RobotPrompt{
 	@Override
 	public String nextScreen(Map<String, List<String>> userAnswerDB) {
 
+		return DrinkPromptNames.IMPORTANCE;
+
+		/*
 		String answer = userAnswerDB.get(DrinkPromptNames.CONFIRM).get(0);
 		if(answer.equals("yes")){
 			return DrinkPromptNames.CHANGE;
@@ -76,6 +90,7 @@ public class DConfirm extends RobotPrompt{
 		userAnswerDB.remove(DrinkPromptNames.CONFIRM);
 
 		return DrinkPromptNames.GOOD;
+		*/
 	}
 
 

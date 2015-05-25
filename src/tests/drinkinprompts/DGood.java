@@ -29,15 +29,15 @@ public class DGood extends RobotPrompt{
 	@Override
 	public List<UserResponseOption> generatePossibleUserResponses() {
 		LinkedList<UserResponseOption> options = this.usersResponsesToList(DrinkPromptNames.GOOD, DrinkPromptNames.GOOD,
-				"helps you have fun",
-				"helps relax or destress you",
-				"makes it easier to socialize",
-				"tastes good",
-				"makes you feel part of the group",
-				"to celebrate",
-				"because everyone else does",
-				"makes you feel better",
-				"to feel less depressed");
+				"that you like how it makes you feel",
+				"that it helps you relax",
+				"that it tastes good",
+				"that it makes you feel part of a group",
+				"that it helps you celebrate",
+				"that it helps you socialize",
+				"that it helps you feel better if you are down",
+				"that it helps you enjoy other activities more",
+				"that it helps you have fun");
 
 		options.add(new UserResponseOption(DrinkPromptNames.GOOD, DrinkPromptNames.GOOD, "", true));
 

@@ -8,6 +8,7 @@ public class DrinkPromptNames {
 
 	//screens
 	public static final String ROOT = "root";
+	public static final String WELCOME = "welcome";
 	public static final String PATTERN = "pattern";
 	public static final String GOOD = "good";
 	public static final String BAD = "bad";
@@ -21,7 +22,9 @@ public class DrinkPromptNames {
 	public static final String SUMMARY = "summary";
 	public static final String LIMITS = "limits";
 	public static final String GOALS = "goals";
+	public static final String GOALCNO = "goalsCNo";
 	public static final String GOALYES = "goalsYes";
+	public static final String GOALYESREPEAT = "goalsYesRepeat";
 	public static final String GOALCONFIRM = "goalsConfirm";
 	public static final String GOALSTEPS = "goalSteps";
 	public static final String INFORMATION = "information";

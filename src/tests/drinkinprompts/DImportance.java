@@ -22,7 +22,9 @@ public class DImportance extends RobotPrompt{
 
 	@Override
 	public String generatePrompt() {
-		return "On a scale of 0 to 10, where 0 is not very important and 10 is very important, " +
+		return "It seems like I’ve got a pretty good picture of where things are at with your use of alcohol." +
+				"I would now like to check in to understand what, if anything, you’d like to do about making a change in your drinking." +
+				"On a scale of 0 to 10, where 0 is not very important and 10 is very important, " +
 				"how important is it to you to make some change in your drinking?";
 	}
 
@@ -38,7 +40,7 @@ public class DImportance extends RobotPrompt{
 		if(imp > 0) {
 			return DrinkPromptNames.IMPORTANCEB;
 		}
-		return DrinkPromptNames.IMPORTANCEC;
+		return DrinkPromptNames.CONFIDENCE;
 	}
 
 

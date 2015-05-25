@@ -29,21 +29,16 @@ public class DBad extends RobotPrompt{
 	@Override
 	public List<UserResponseOption> generatePossibleUserResponses() {
 		LinkedList<UserResponseOption> options = this.usersResponsesToList(DrinkPromptNames.BAD, DrinkPromptNames.BAD,
-				"makes you feel bad afterward",
+				"makes you feel bad or hungover afterward",
 				"interferes with your work",
-				"interferes with other social interactions",
+				"causes some social problems",
 				"takes  time away from other activities",
-				"people judge you negatively",
-				"creates health problems",
-				"costs you money",
+				"causes people to judge you negatively",
+				"can harm your health",
+				"costs you so much money",
 				"can be hard to stop once you start",
-				"is getting kind of old",
-				"makes emotional problems worse",
-				"causes problems with your family",
-				"causes problems with your significant other",
-				"makes you make bad decisions",
-				"makes you gain weight",
-				"interferes with school");
+				"does not bring you as much enjoyment as it used to",
+				"contributes to weight gain");
 
 		options.add(new UserResponseOption(DrinkPromptNames.BAD, DrinkPromptNames.BAD, "", true));
 

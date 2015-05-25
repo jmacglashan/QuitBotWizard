@@ -37,6 +37,12 @@ public class DGoalConfirm extends RobotPrompt {
 
 	@Override
 	public String nextScreen(Map<String, List<String>> userAnswerDB) {
+
+		String confirm = userAnswerDB.get(DrinkPromptNames.GOALCONFIRM).get(0);
+		if(confirm.equals("no")){
+			return DrinkPromptNames.GOALCNO;
+		}
+
 		return DrinkPromptNames.GOALSTEPS;
 	}
 }
