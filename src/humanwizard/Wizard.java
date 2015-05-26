@@ -1,5 +1,8 @@
 package humanwizard;
 
+import org.yaml.snakeyaml.Yaml;
+
+import java.io.*;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -59,15 +62,71 @@ public class Wizard {
 			this.curRobotPrompt = this.screenPrompts.get(this.rootPromptScreenId);
 		}
 		else{
-			String nextScreen = this.curRobotPrompt.nextScreen(this.userAnswerDB);
-			if(nextScreen == null){
-				this.curRobotPrompt = null;
-				return;
+			if(this.curRobotPrompt == null){
+				this.curRobotPrompt = this.screenPrompts.get(this.rootPromptScreenId);
 			}
-			this.curRobotPrompt = this.screenPrompts.get(nextScreen);
+			else {
+
+				String nextScreen = this.curRobotPrompt.nextScreen(this.userAnswerDB);
+				if(nextScreen == null) {
+					this.curRobotPrompt = null;
+					return;
+				}
+				this.curRobotPrompt = this.screenPrompts.get(nextScreen);
+			}
 		}
 		this.curRobotPrompt.enterWithAnswers(this.userAnswerDB);
 		this.curScreen = this.curRobotPrompt.screenId;
+	}
+
+	public void writeToRecordDir(String pathToDir){
+		if(!pathToDir.endsWith("/")){
+			pathToDir += "/";
+		}
+
+		File dir = new File(pathToDir);
+		dir.mkdirs();
+
+		final String ext = ".yaml";
+
+		FilenameFilter filter = new FilenameFilter() {
+			public boolean accept(File dir, String name) {
+				if(name.endsWith(ext)){
+					return true;
+				}
+				return false;
+			}
+		};
+		String[] children = dir.list(filter);
+
+		int max = 0;
+		for(String r : children){
+			String baseName = r.substring(0, r.length()-5);
+			int num = Integer.parseInt(baseName);
+			max = Math.max(num, max);
+		}
+
+		int newId = max+1;
+
+		String nFilePath = pathToDir + newId + ext;
+
+		//put contents into yaml string
+		Yaml yaml = new Yaml();
+		String output = yaml.dump(this.userAnswerDB);
+
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter(nFilePath));
+			out.write(output+"\n");
+			out.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+
+
+	}
+
+	public void resetAnswers(){
+		this.userAnswerDB.clear();
 	}
 	
 	

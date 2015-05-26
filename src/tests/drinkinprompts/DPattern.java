@@ -6,6 +6,7 @@ import humanwizard.UserResponseOption;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author James MacGlashan.
@@ -52,5 +53,10 @@ public class DPattern extends RobotPrompt{
 		comments.add("I see.");
 
 		return comments;
+	}
+
+	@Override
+	public Set<String> getRequiredQuestions() {
+		return this.toSet("When do you tend to drink the most?");
 	}
 }

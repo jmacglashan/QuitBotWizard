@@ -38,6 +38,11 @@ public class DRootRP extends RobotPrompt{
 	}
 
 	@Override
+	public List<String> getRequiredAnswers() {
+		return this.toLinkedList(DrinkPromptNames.SEX);
+	}
+
+	@Override
 	public String nextScreen(Map<String, List<String>> userAnswerDB) {
 		return DrinkPromptNames.WELCOME;
 	}

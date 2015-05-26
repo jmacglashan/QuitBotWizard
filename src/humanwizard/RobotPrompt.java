@@ -23,6 +23,10 @@ public abstract class RobotPrompt {
 		return new HashSet<>(0);
 	}
 
+	public List<String> getRequiredAnswers(){
+		return new LinkedList<>();
+	}
+
 	public List<String> getDynamicComments(){
 		List<String> comments = new ArrayList<>();
 		//comments.add("Some comment");
@@ -36,6 +40,14 @@ public abstract class RobotPrompt {
 			items.add(a);
 		}
 		return items;
+	}
+
+	protected Set<String> toSet(String...args){
+		HashSet<String> set = new HashSet<>(args.length);
+		for(String s : args){
+			set.add(s);
+		}
+		return set;
 	}
 
 	protected LinkedList<UserResponseOption> usersResponsesToList(String screenId, String responseKey, String...options){

@@ -45,4 +45,9 @@ public class DGoalConfirm extends RobotPrompt {
 
 		return DrinkPromptNames.GOALSTEPS;
 	}
+
+	@Override
+	public List<String> getRequiredAnswers() {
+		return this.toLinkedList(DrinkPromptNames.GOALCONFIRM);
+	}
 }

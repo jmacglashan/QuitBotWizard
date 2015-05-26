@@ -36,4 +36,9 @@ public class DConfidence extends RobotPrompt{
 	public String nextScreen(Map<String, List<String>> userAnswerDB) {
 		return DrinkPromptNames.SUMMARY;
 	}
+
+	@Override
+	public List<String> getRequiredAnswers() {
+		return this.toLinkedList(DrinkPromptNames.CONFIDENCE);
+	}
 }

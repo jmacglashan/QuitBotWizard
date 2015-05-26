@@ -33,11 +33,11 @@ public class DrinkPromptNames {
 
 
 	//answer keys
-	public static final String DAYSPERWEEK = "daysPerWeek";
-	public static final String DRINKSPERWEEK = "drinksPerWeek";
+	public static final String DAYSPERWEEK = "#daysPerWeek";
+	public static final String DRINKSPERWEEK = "#drinksPerWeek";
 	public static final String SEX = "sex";
 
-	public static final String GOALDPDAY = "goalDrinksPerDay";
-	public static final String GOALDPWEEK = "goalDrinksPerWeek";
+	public static final String GOALDPDAY = "#goalDrinksPerDay";
+	public static final String GOALDPWEEK = "#goalDrinksPerWeek";
 
 }

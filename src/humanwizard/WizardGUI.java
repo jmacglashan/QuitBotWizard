@@ -3,8 +3,10 @@ package humanwizard;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -29,6 +31,8 @@ public class WizardGUI extends JFrame {
 	protected List<UserResponseOption>	dynamicOptions = new LinkedList<>();
 	
 	protected KeepOnNetworkClient		keepon = null;
+
+	protected Set<String>				screenQuestionsAsked;
 	
 	
 	public WizardGUI(Wizard wizard){
@@ -175,6 +179,7 @@ public class WizardGUI extends JFrame {
 				else{
 					WizardGUI.this.removeUserResponse(option);
 				}
+				WizardGUI.this.checkProgression();
 				
 			}
 		});
@@ -189,16 +194,19 @@ public class WizardGUI extends JFrame {
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				option.userResponse = field.getText();
+				checkProgression();
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				option.userResponse = field.getText();
+				checkProgression();
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				option.userResponse = field.getText();
+				checkProgression();
 			}
 		});
 
@@ -215,6 +223,8 @@ public class WizardGUI extends JFrame {
 				currentText += "\n\n"+speechText;
 				WizardGUI.this.robotSpeech.setText(currentText);
 				WizardGUI.this.say(speechText);
+				WizardGUI.this.screenQuestionsAsked.add(speechText);
+				WizardGUI.this.checkProgression();
 			}
 		});
 
@@ -262,10 +272,18 @@ public class WizardGUI extends JFrame {
 		
 		RobotPrompt rp = this.wizard.getCurrentRobotPrompt();
 		if(rp == null){
-			this.robotSpeech.setText("<<no speech; session is over>>");
-			this.nextScreenButton.setEnabled(false);
+			this.robotSpeech.setText("### No speech; session is over. Press \"User Finished Responding\" to start with a new client.");
+			this.wizard.writeToRecordDir("saved");
+			this.nextScreenButton.setEnabled(true);
+			this.wizard.resetAnswers();
 		}
 		else{
+
+			this.screenQuestionsAsked = new HashSet<>();
+			this.nextScreenButton.setEnabled(false);
+
+
+
 			String speechText = rp.generatePrompt();
 			this.robotSpeech.setText(speechText);
 			List<UserResponseOption> options = rp.generatePossibleUserResponses();
@@ -283,6 +301,7 @@ public class WizardGUI extends JFrame {
 				this.screenComments.add(this.getCommentButton(s));
 			}
 			this.say(speechText);
+			this.checkProgression();
 			
 		}
 
@@ -310,8 +329,49 @@ public class WizardGUI extends JFrame {
 		System.out.println("remove option: " + option.userResponse);
 		this.selectedOptions.remove(option);
 	}
+
+	protected boolean hasSelectedAnswerFor(String key){
+		for(UserResponseOption r : this.selectedOptions){
+			if(r.responseKey.equals(key)){
+				return true;
+			}
+		}
+		return false;
+	}
 	
-	
+	protected void checkProgression(){
+		boolean passedQ = false;
+		if(this.screenQuestionsAsked.containsAll(this.wizard.getCurrentRobotPrompt().getRequiredQuestions())){
+			passedQ = true;
+		}
+
+		boolean passedType = true;
+		for(UserResponseOption dro : this.dynamicOptions){
+			if(dro.responseKey.startsWith("#")){
+				//is it a number?
+				if(!dro.userResponse.matches("-?\\d+(\\.\\d+)?")){
+					passedType = false;
+					break;
+				}
+
+			}
+		}
+
+		boolean passedA = true;
+		for(String reqA : this.wizard.getCurrentRobotPrompt().getRequiredAnswers()){
+			if(!this.hasSelectedAnswerFor(reqA)){
+				passedA = false;
+				break;
+			}
+		}
+
+		if(passedQ && passedType && passedA){
+			this.nextScreenButton.setEnabled(true);
+		}
+		else{
+			this.nextScreenButton.setEnabled(false);
+		}
+	}
 	
 	
 

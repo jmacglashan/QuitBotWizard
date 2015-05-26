@@ -43,4 +43,9 @@ public class DGoalSteps extends RobotPrompt {
 		return this.toLinkedList("So, you are just starting to think about how you might make some changes.",
 				"You already have some ideas on how you might drink less.");
 	}
+
+	@Override
+	public List<String> getRequiredAnswers() {
+		return this.toLinkedList(DrinkPromptNames.GOALSTEPS);
+	}
 }

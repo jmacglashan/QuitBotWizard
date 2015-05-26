@@ -49,4 +49,9 @@ public class DLimits extends RobotPrompt{
 	public String nextScreen(Map<String, List<String>> userAnswerDB) {
 		return DrinkPromptNames.GOALS;
 	}
+
+	@Override
+	public List<String> getRequiredAnswers() {
+		return this.toLinkedList(DrinkPromptNames.LIMITS);
+	}
 }

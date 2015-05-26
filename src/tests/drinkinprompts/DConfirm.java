@@ -93,6 +93,10 @@ public class DConfirm extends RobotPrompt{
 		*/
 	}
 
+	@Override
+	public List<String> getRequiredAnswers() {
+		return this.toLinkedList(DrinkPromptNames.CONFIRM);
+	}
 
 	protected String itemsToString(List<String> items){
 		StringBuilder sb = new StringBuilder();

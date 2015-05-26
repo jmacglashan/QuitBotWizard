@@ -34,4 +34,9 @@ public class DInformation extends RobotPrompt {
 	public String nextScreen(Map<String, List<String>> userAnswerDB) {
 		return DrinkPromptNames.INFORMATIONRESPONSE;
 	}
+
+	@Override
+	public List<String> getRequiredAnswers() {
+		return this.toLinkedList(DrinkPromptNames.INFORMATION);
+	}
 }
