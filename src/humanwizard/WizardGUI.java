@@ -183,6 +183,15 @@ public class WizardGUI extends JFrame {
 				
 			}
 		});
+
+		if(option.userResponse.length() > 40){
+			button.setFont(new Font("Arial", Font.PLAIN, 8));
+		}
+		else if(option.userResponse.length() > 20){
+			button.setFont(new Font("Arial", Font.PLAIN, 10));
+		}
+
+
 		
 		return button;
 	}
@@ -340,6 +349,11 @@ public class WizardGUI extends JFrame {
 	}
 	
 	protected void checkProgression(){
+
+		if(this.wizard.getCurrentRobotPrompt() == null){
+			return;
+		}
+
 		boolean passedQ = false;
 		if(this.screenQuestionsAsked.containsAll(this.wizard.getCurrentRobotPrompt().getRequiredQuestions())){
 			passedQ = true;

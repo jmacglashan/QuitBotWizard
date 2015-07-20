@@ -40,13 +40,14 @@ public class DrinkWizard {
 		gui.nextScreen();
 
 
-		/*
+
+
 		KeepOnNetworkClient keepon = new KeepOnNetworkClient(12345);
 		boolean succeed = keepon.connectToKeepOnServer();
 		if(succeed){
 			gui.setKeepon(keepon);
 		}
-		*/
+
 
 		gui.startGUI();
 
