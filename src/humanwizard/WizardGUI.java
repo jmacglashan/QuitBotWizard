@@ -64,6 +64,7 @@ public class WizardGUI extends JFrame {
 		this.robotSpeech.setEditable(false);
 		this.robotSpeech.setLineWrap(true);
 		this.robotSpeech.setWrapStyleWord(true);
+		this.robotSpeech.setPreferredSize(new Dimension(750, 200));
 		this.nextScreenButton = new JButton("User Finished Responding");
 		this.nextScreenButton.addActionListener(new ActionListener() {
 			
@@ -78,7 +79,6 @@ public class WizardGUI extends JFrame {
 		JPanel speechPanel = new JPanel();
 		speechPanel.setBorder(BorderFactory.createTitledBorder("Robot Speech"));
 		speechPanel.add(rspeechScroll);
-		speechPanel.setPreferredSize(new Dimension(760, rspeechScroll.getPreferredSize().height+40));
 
 
 
@@ -122,7 +122,7 @@ public class WizardGUI extends JFrame {
 		this.getContentPane().add(speechPanel, c);
 
 		c.gridy++;
-		c.insets = new Insets(20,0,0,0);
+		//c.insets = new Insets(20,0,0,0);
 		this.getContentPane().add(this.commonComments, c);
 
 		c.gridy++;
@@ -134,28 +134,6 @@ public class WizardGUI extends JFrame {
 		c.gridy++;
 		this.getContentPane().add(this.nextScreenButton, c);
 
-		/*
-		this.getContentPane().setLayout(new BorderLayout(0, 10));
-		this.getContentPane().add(this.robotSpeech, BorderLayout.NORTH);
-		this.getContentPane().add(this.userResponseContainer, BorderLayout.CENTER);
-		this.getContentPane().add(this.nextScreenButton, BorderLayout.SOUTH);
-		*/
-
-
-
-
-		
-		
-		/*
-		LinkedList<UserResponseOption> options = new LinkedList<>();
-		for(int i = 1; i <= 12; i++){
-			options.add(new UserResponseOption("s0", "o"+i, "Option " + i));
-		}
-		
-		for(UserResponseOption o : options){
-			this.userResponseContainer.add(this.createJButtonForUserResponse(o));
-		}
-		*/
 		
 	}
 	
